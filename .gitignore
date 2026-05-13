@@ -1,0 +1,12 @@
+# Obsidian internal folder
+.obsidian/workspace
+.obsidian/workspace-mobile
+.obsidian/cache/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Access/Auth Keys
+Auth Keys.md
+

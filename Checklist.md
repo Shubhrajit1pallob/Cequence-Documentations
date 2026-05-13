@@ -1,0 +1,3 @@
+- [ ] Check on the `cq-pulumi` access key roles permission
+- [ ] Look into the `cequence/cicd-templates/.ai-review.yml` file that has the ai-review CI file.
+- [ ] 
