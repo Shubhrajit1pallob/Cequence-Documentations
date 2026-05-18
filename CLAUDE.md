@@ -25,11 +25,11 @@ The Ops Portal repo path `service-portal/ui/features/orphaned-resources/` is the
 - `Index/Contents.md` — top-level table of contents; use this as the entry point when orienting.
 - `Problem Statement - Orphaned Resources Detection & Remediation.md` — the canonical "what done looks like" spec from the supervisor.
 - `Stories/` — phased story breakdowns (Phase 0 → Phase 6); Phases 0–5 are the committed path, Phase 6 is stretch.
-- `Work Logs/` — daily logs (`YYYY-MM-DD (Weekday).md`).
+- `Work Logs/` — daily logs (`YYYY-MM-DD.md`).
 - `ToDo Lists/` — running task lists.
 - `Decision Logs.md` — template + destination for decision-log entries. Each entry MUST include an **AI / agentic angle** section (whether AI was tried, prompt shape, how output was verified, or why AI wasn't the right tool).
-- `Agentic System.md` — areas where AI/agentic approaches are high-fit (root-cause analysis, tag inference, risk scoring, anomaly detection) vs. low-fit (discovery rules, UI, dashboards).
-- `Jira Content - Orphaned Resources Project.md` — mirror of the Jira PLAT epic; Jira is the public mirror, this vault / git markdown is source of truth.
+- `Agentic Workflow/` — folder for agentic / AI-assisted work. Holds `Agentic System.md` (where AI/agentic approaches are high-fit vs. low-fit) plus per-experiment notes as they're created.
+- `Jira Content - Orphaned Resources Project.md` — mirror of the Jira PLAT epic. Jira itself mirrors the Ops Portal folder `service-portal/ui/features/orphaned-resources/`, not this vault. This vault is the user's personal work tracking.
 - `Pulumi state.md`, `Discovery Job.md`, `Approval Workflow.md`, `Escalation Plan.md`, `Risk Considerations.md`, `Key Questions for Team.md`, `Questions.md` — topic notes.
 - `Auth Keys.md` — gitignored; never commit, never read into shared output.
 

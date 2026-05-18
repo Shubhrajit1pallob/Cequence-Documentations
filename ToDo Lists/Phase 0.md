@@ -1,9 +1,9 @@
-## Priority 1: Unblock yourself
+## 1. Unblock yourself
 
 - [ ]  Test write access to Ops Portal repo — try creating and pushing a test branch. If it works, delete the branch and start committing docs. If it fails, you know you need Developer role and can follow up with team lead.
 - [ ]  Follow up on pending access requests (Descope ops-portal-admin, AWS read access, DocumentDB read access). Check if team lead has responded since you sent the justification.
 
-## Priority 2: Jira setup
+## 2. Jira setup
 
 - [x]  Create Jira stories for Phase 0 through Phase 6 under the Epic (use jira-content.md as copy-paste source)
 - [x]  Create the 9 Phase 0 subtasks under the Phase 0 story
@@ -11,39 +11,65 @@
 - [x]  Move Phase 0 story to "In Progress"
 - [x]  Mark subtasks 1 (clone repos) and 2 (access requests) as in progress
 
-## Priority 3: Start researching the repos
+## 3. Research the code
 
-Start reading the code that matters for Phase 0. The goal is to understand how tenant creation and destruction actually works. Focus areas:
+Start reading the code that matters for Phase 0. The goal is to understand how tenant creation and destruction actually works.
 
-- [ ]  **TenantDestroyCoordinator.ts** — this is the orchestration logic for tenant deletion. Find it in the Ops Portal repo. Read through it and note: - What triggers a destroy? - What order are layers destroyed? - What error handling exists? - Where could a failure leave resources behind?
-- [ ]  **Layer 1 (Cluster) repo** — look at the Pulumi code that creates EKS clusters and VPCs. Look at the .gitlab-ci.yml to understand the destroy pipeline stages. Check the Pulumi config for how the state backend is configured (this answers your Pulumi state question).
-- [ ]  **Layer 3 (Tenant) repo** — look at what gets created per tenant (namespace, ingresses, CDN, Keycloak). These are the resources at the tenant layer that might leak.
-- [ ]  **.gitlab-ci.yml files** across repos — understand the pipeline structure for destroy jobs. Look for manual gates (the "Blocked" pipelines you saw), retry logic, and error handling.
+### Provisioning side (working backwards from these helps the destroy side)
 
-Don't try to read everything today. Start with TenantDestroyCoordinator.ts and one layer repo. Take notes as you go.
+- [x] End-to-end provisioning workflow → [[Tenant provisioning workflow]]
+- [x] GitLab pipeline trigger + status tracking → [[GitLab pipeline trigger + tracking]]
+- [x] Job-to-job transitions / Coordinator polling loop → [[Job transitions]]
+- [ ] ArgoCD sync jobs — how the sync steps fit into provisioning
 
-## Priority 4: Documentation
+### Destroy side
+
+- [ ] **TenantDestroyCoordinator.ts** — orchestration logic for tenant deletion. Find it in the Ops Portal repo. Read through it and note:
+  - What triggers a destroy?
+  - What order are layers destroyed?
+  - What error handling exists?
+  - Where could a failure leave resources behind?
+- [x] **Layer 1 (Cluster) repo** — Pulumi code that creates EKS clusters and VPCs. Look at the `.gitlab-ci.yml` to understand the destroy pipeline stages. Check the Pulumi config for how the state backend is configured (this answers your Pulumi state question).
+- [x] **Layer 3 (Tenant) repo** — what gets created per tenant (namespace, ingresses, CDN, Keycloak). These are the resources at the tenant layer that might leak.
+
+### Pipeline-level
+
+- [x] **`.gitlab-ci.yml` files** across repos — pipeline structure for destroy jobs. Look for manual gates (the "Blocked" pipelines), retry logic, and error handling.
+
+Don't try to read everything at once. Start with `TenantDestroyCoordinator.ts` next. Take notes as you go.
+
+## 4. Documentation
 
 - [ ]  If write access confirmed: commit initial docs via MR (problem-statement.md, access-requests.md, decisions.md, work-log.md)
-- [ ]  If write access not yet confirmed: keep docs locally, ready to push
-- [ ]  Update work-log.md at end of day with what you actually did
-- [ ]  Add any new decisions to decisions.md
+- [x]  If write access not yet confirmed: keep docs locally, ready to push
+- [x]  Update work-log.md at end of day with what you actually did
+- [x]  Add any new decisions to decisions.md
 
-## Priority 5: Plan the pairing session
+## 5. Explore agentic approaches for Phase 0
 
-- [ ]  Identify which team member(s) can walk you through a provision and destroy in dev. Consider: - Who has done tenant provisioning/deletion recently? - Who maintains the Pulumi code for the tenant layers? - Who has dev environment access?
-- [ ]  Reach out to schedule the session — suggest specific times
-- [ ]  Before the session, prepare a list of questions so you make the most of the time (what to watch for, what logs to check, etc.)
+Your supervisor's AI Lens for Phase 0 calls for **both** tasks below. Do them sequentially — start with the one whose input data is already in hand (usually Task B, since the `.ts` file is in the cloned repo).
 
-## Priority 6: Explore agentic approaches for Phase 0
+### Setup
 
-Your supervisor's AI Lens for Phase 0 suggests two specific things:
+- [ ]  Read [[Agentic Workflow/Index|Agentic Workflow]] to ground yourself in where AI is/isn't a fit for this project
+- [ ]  Decide where AI experiment inputs and outputs will live (suggest: `Agentic Workflow/` folder with one sub-file per experiment — e.g. `pipeline-log-analysis.md`, `destroy-coordinator-walkthrough.md`)
 
-- [ ]  **Pipeline log analysis**: Can Claude Code ingest a batch of failed destroy pipeline logs and produce a categorized failure-mode summary? Think about: - How would you get the logs into Claude Code? (copy-paste, file, API) - What would the prompt look like? - How would you verify the output? (manually check a sample) - Is this faster than reading logs yourself? Note: you need pipeline log access first, which you have.
+### Task A — Pipeline log analysis
 
-- [ ]  **TenantDestroyCoordinator.ts walkthrough**: Can Claude Code walk you through the file and produce a sequence diagram? Think about: - You can start this today if you have the file from the cloned repo - Feed the file to Claude Code and ask for a sequence diagram - Compare the output against your own reading of the code - Log the result in your decision log: where AI helped, where it didn't, what you had to correct
+- [ ]  Gather a batch of failed destroy pipeline logs (50+ if available) — save the raw logs to a file
+- [ ]  Draft a prompt: what task (categorize failure modes), what input format, what output format you want (e.g. table of category → count → representative example)
+- [ ]  Run on a small sample first (1–2 logs) to sanity-check the output
+- [ ]  Run on the full batch
+- [ ]  **Verify a sample manually** — pick ~5 logs and check whether the AI's categorization matches what you'd say
+- [ ]  Capture the result in `Decision Logs.md` using the AI / agentic angle template — note where AI sped you up and where it missed something a human caught
 
-Don't build anything agentic today. Just explore whether these two suggestions from your supervisor are feasible and note your thinking. The decision log entry matters more than the output.
+### Task B — `TenantDestroyCoordinator.ts` walkthrough
+
+- [ ]  Locate `TenantDestroyCoordinator.ts` in the cloned Ops Portal repo
+- [ ]  Draft a prompt asking Claude Code to walk through the file and produce a sequence diagram of the destroy flow
+- [ ]  Run it; read the AI's output alongside the source file
+- [ ]  Compare the diagram against your own reading — note discrepancies
+- [ ]  Capture the result in `Decision Logs.md` using the AI / agentic angle template — note where AI sped you up and where it missed something a human caught
 
 ---
 
@@ -51,4 +77,4 @@ Don't build anything agentic today. Just explore whether these two suggestions f
 
 - Standup is today — key talking points prepared in standup-2026-05-12.md
 - Don't try to finish everything today. Phase 0 has multiple subtasks spread across days/weeks.
-- If access is still blocked, focus on what you CAN do: reading code, understanding the pipeline structure, planning the pairing session.
+- If access is still blocked, focus on what you CAN do: reading code, understanding the pipeline structure.

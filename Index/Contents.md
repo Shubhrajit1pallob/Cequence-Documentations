@@ -8,12 +8,10 @@
 7. [[Risk Considerations]]
 8.  [[Jira Content - Orphaned Resources Project]]
 9. [[Investigation Checklist]]
-10. [[Agentic System]]
+10. [[Agentic Workflow/Index|Agentic Workflow]]
 11. [[Auth Keys]]
-12. [[Approval Workflow]]
-13. [[Discovery Job]]
-14. [[Escalation Plan]]
-15. [[Pulumi state]]
-16. [[Decision Logs]]
-17. [[Work Logs]]
-18. 
+12. [[Escalation Plan]]
+13. [[Pulumi state]]
+14. [[Decision Logs]]
+15. [[Work Logs]]
+16. 
