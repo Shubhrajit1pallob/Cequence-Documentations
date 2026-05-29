@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cequence-vault": {
+      "command": "/Users/shubhrajitpallob/obsidian-vault-mcp/.venv/bin/python",
+      "args": ["/Users/shubhrajitpallob/obsidian-vault-mcp/server.py"]
+    }
+  }
+}

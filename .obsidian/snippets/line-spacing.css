@@ -1,0 +1,10 @@
+/* Increase spacing between checklist / list items */
+.markdown-preview-view li,
+.markdown-source-view .cm-line:has(.task-list-label) {
+    margin-bottom: 40px;
+}
+
+.markdown-preview-view ul,
+.markdown-preview-view ol {
+    line-height: 3.0;
+}

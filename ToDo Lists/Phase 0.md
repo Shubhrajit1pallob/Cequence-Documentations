@@ -1,7 +1,7 @@
 ## 1. Unblock yourself
 
-- [ ]  Test write access to Ops Portal repo — try creating and pushing a test branch. If it works, delete the branch and start committing docs. If it fails, you know you need Developer role and can follow up with team lead.
-- [ ]  Follow up on pending access requests (Descope ops-portal-admin, AWS read access, DocumentDB read access). Check if team lead has responded since you sent the justification.
+- [x]  Test write access to Ops Portal repo — try creating and pushing a test branch. If it works, delete the branch and start committing docs. If it fails, you know you need Developer role and can follow up with team lead.
+- [x]  Follow up on pending access requests (Descope ops-portal-admin, AWS read access, DocumentDB read access). Check if team lead has responded since you sent the justification.
 
 ## 2. Jira setup
 
@@ -20,13 +20,13 @@ Start reading the code that matters for Phase 0. The goal is to understand how t
 - [x] End-to-end provisioning workflow → [[Tenant provisioning workflow]]
 - [x] GitLab pipeline trigger + status tracking → [[GitLab pipeline trigger + tracking]]
 - [x] Job-to-job transitions / Coordinator polling loop → [[Job transitions]]
-- [ ] ArgoCD sync jobs — how the sync steps fit into provisioning
+- [x] ArgoCD sync jobs — how the sync steps fit into provisioning
 
 ### Destroy side
 
 - [ ] **TenantDestroyCoordinator.ts** — orchestration logic for tenant deletion. Find it in the Ops Portal repo. Read through it and note:
-  - What triggers a destroy?
-  - What order are layers destroyed?
+  - What triggers the destroy?
+  - In what order are layers destroyed?
   - What error handling exists?
   - Where could a failure leave resources behind?
 - [x] **Layer 1 (Cluster) repo** — Pulumi code that creates EKS clusters and VPCs. Look at the `.gitlab-ci.yml` to understand the destroy pipeline stages. Check the Pulumi config for how the state backend is configured (this answers your Pulumi state question).
@@ -40,7 +40,7 @@ Don't try to read everything at once. Start with `TenantDestroyCoordinator.ts` n
 
 ## 4. Documentation
 
-- [ ]  If write access confirmed: commit initial docs via MR (problem-statement.md, access-requests.md, decisions.md, work-log.md)
+- [x]  If write access confirmed: commit initial docs via MR (problem-statement.md, access-requests.md, decisions.md, work-log.md)
 - [x]  If write access not yet confirmed: keep docs locally, ready to push
 - [x]  Update work-log.md at end of day with what you actually did
 - [x]  Add any new decisions to decisions.md
@@ -51,7 +51,7 @@ Your supervisor's AI Lens for Phase 0 calls for **both** tasks below. Do them se
 
 ### Setup
 
-- [ ]  Read [[Agentic Workflow/Index|Agentic Workflow]] to ground yourself in where AI is/isn't a fit for this project
+- [x]  Read [[Agentic Workflow/Index|Agentic Workflow]] to ground yourself in where AI is/isn't a fit for this project
 - [ ]  Decide where AI experiment inputs and outputs will live (suggest: `Agentic Workflow/` folder with one sub-file per experiment — e.g. `pipeline-log-analysis.md`, `destroy-coordinator-walkthrough.md`)
 
 ### Task A — Pipeline log analysis

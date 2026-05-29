@@ -1,0 +1,2 @@
+- [ ] Create the work logs. Document your work.
+- [ ] 
