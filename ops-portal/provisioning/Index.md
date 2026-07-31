@@ -12,8 +12,9 @@ Code lives in `app/_lib/tenant/provisioning/` in the ops-portal repo.
 - [[cicd-templates-repo]] — The `.tenants.yml` registry: structure, operations, role in CI
 - [[argocd-sync-jobs]] — Why explicit sync, ArgoCd client, SyncArgoCdApplicationJob base class
 
+- [[failure-and-retry-semantics]] — Job failure handling, operator actions (retry/skip/stop), PLAT-1441 2h timeout
+
 ## Remaining topics to document
 
-- **C** — Failure & retry semantics (operator retry/skip, PLAT-1441 timeout)
 - **D** — Other workflows catalog (Destroy, Pause/Resume, UAP upgrade, EKS upgrade, Synthetic traffic)
 - **E** — Data model (`app/_lib/tenant/tenant.ts` — WorkflowStatus, JobStatus schema)

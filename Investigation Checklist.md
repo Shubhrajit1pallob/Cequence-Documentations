@@ -41,7 +41,9 @@ Pull-through caches create real ECR repos on first pull. Those repos are owned b
 
 **Source:** `src/globalSecrets.ts`
 
-- [ ] Check whether any tenant `aws.secretsmanager.Secret` has a replica relationship referencing these.
+> **CONFIRMED** as a real orphan source by investigations [[pipeline-003-api-security-ng1-dev]], [[pipeline-004-life360-saas-prod]], and [[pipeline-005-shub-test-dev]] (failure-category #3, multi-region secret replica orphan). The concrete defect is on the **tenant side** (`tenant/src/defender.ts:111-159` creates `saas/<tenant>/defender` replicated to all ~30 regions; `tenant.ts:260-273` instantiates it unconditionally). On destroy the primary is deleted while replicas survive as standalone, undeletable secrets — clean SUCCESS, 0 errors. See [[failure-mode-analysis]] Category 2.
+
+- [x] Check whether any tenant `aws.secretsmanager.Secret` has a replica relationship referencing these. → **Yes** — the defender secret replicates to every enabled region.
 - [ ] Check for resource policies pointing back at the tenant secrets.
 
 If a tenant Secrets Manager resource has a replica relationship or a resource policy referencing these, deletion order can get tangled.

@@ -46,8 +46,8 @@ Confirm read access to each repo.
 
 **Acceptance criteria:**
 
-- [ ] All repos cloned locally
-- [ ] Read access confirmed for each (checklist in access-requests.md)
+- [x] All repos cloned locally
+- [x] Read access confirmed for each (checklist in access-requests.md)
 
 ---
 
@@ -166,8 +166,8 @@ For each tenant:
 
 **Acceptance criteria:**
 
-- [ ] 2–3 tenants fully traced with findings documented
-- [ ] Root cause identified for each
+- [x] 2–3 tenants fully traced with findings documented
+- [x] Root cause identified for each
 
 ---
 

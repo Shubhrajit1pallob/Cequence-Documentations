@@ -35,6 +35,11 @@ Start reading the code that matters for Phase 0. The goal is to understand how t
 ### Pipeline-level
 
 - [x] **`.gitlab-ci.yml` files** across repos — pipeline structure for destroy jobs. Look for manual gates (the "Blocked" pipelines), retry logic, and error handling.
+- [ ] Study historical failures — categorize destroy pipeline failure modes
+    - [x] Get access to the DocumentDB that has the details of the workflows (Not needed anymore)
+    - [x] Create a script that fetches the pipeline link for the tenant destroy job. (not needed anymore)
+    - [ ] Investigate manually (2-3). Record/Document them. (in progress)
+    - [ ] Create a plan to automate the process of fetching the pipeline details and looking for the destroy jobs so that it can be fed to the AI to investigate. (Ask about api that can fetch this data automatically)
 
 Don't try to read everything at once. Start with `TenantDestroyCoordinator.ts` next. Take notes as you go.
 
@@ -54,7 +59,7 @@ Your supervisor's AI Lens for Phase 0 calls for **both** tasks below. Do them se
 - [x]  Read [[Agentic Workflow/Index|Agentic Workflow]] to ground yourself in where AI is/isn't a fit for this project
 - [ ]  Decide where AI experiment inputs and outputs will live (suggest: `Agentic Workflow/` folder with one sub-file per experiment — e.g. `pipeline-log-analysis.md`, `destroy-coordinator-walkthrough.md`)
 
-### Task A — Pipeline log analysis
+### Task A — Pipeline log analysis (To be edited)
 
 - [ ]  Gather a batch of failed destroy pipeline logs (50+ if available) — save the raw logs to a file
 - [ ]  Draft a prompt: what task (categorize failure modes), what input format, what output format you want (e.g. table of category → count → representative example)
@@ -65,7 +70,7 @@ Your supervisor's AI Lens for Phase 0 calls for **both** tasks below. Do them se
 
 ### Task B — `TenantDestroyCoordinator.ts` walkthrough
 
-- [ ]  Locate `TenantDestroyCoordinator.ts` in the cloned Ops Portal repo
+- [x]  Locate `TenantDestroyCoordinator.ts` in the cloned Ops Portal repo
 - [ ]  Draft a prompt asking Claude Code to walk through the file and produce a sequence diagram of the destroy flow
 - [ ]  Run it; read the AI's output alongside the source file
 - [ ]  Compare the diagram against your own reading — note discrepancies

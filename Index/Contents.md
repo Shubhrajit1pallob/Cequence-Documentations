@@ -17,3 +17,4 @@
 13. [[Decision Logs]]
 14. [[Work Logs]]
 15. [[Questions I need to ask (Myself, to claude, or/Claude|Questions — Claude]]
+16. [[GitLab AI Code Review]] — pending setup; automated Claude MR reviews via `cequence/cicd-templates/.ai-review.yml`; blocked on `ANTHROPIC_API_KEY` + `GITLAB_AI_REVIEW` token

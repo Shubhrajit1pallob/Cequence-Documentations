@@ -11,3 +11,13 @@
 - How could we automate this entirely (from design to execution) where we are just waiting for the output in an MR to review
 - How can you verify this as a human? 
 - Btw, as long as you run in dry run mode, you can run ops portal to deploy and upgrade fake tenants.  It is possible and no real calls are made. All commits end up being local on your computer.
+
+
+
+
+
+Atlassian OAuth client/secret → see [[Auth Keys]] (gitignored, never commit)
+
+
+- Add the links to the slack channel messages(Failed and succeed)
+- Update the manifest for prod account and dev account in the prod version

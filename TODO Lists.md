@@ -1,4 +1,6 @@
 - [[Everyday Tasks]]
 - [[Phase 0]]
+- [[Phase 1]]
+- [[Phase 2]]
 - [[Personal TODO s]]
 - [[Cequence/Questions I need to ask (Myself, to claude, or/Claude]]
